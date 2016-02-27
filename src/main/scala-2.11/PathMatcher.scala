@@ -12,10 +12,10 @@ class PathMatcher {
       val (path, pattern) = (unslash(p), unslash(t))
       val patternKeys = getPatternKeys(pattern)
       val m = Pattern.compile(getRegexpPattern(pattern)).matcher(path)
-      if (m.matches()) new MatcherResult(isMatch = true, (1 to m.groupCount()).toList.map(i => (patternKeys(i - 1), m.group(i))))
-      else new MatcherResult(isMatch = false, List())
+      if (m.matches()) MatcherResult(isMatch = true, (1 to m.groupCount()).toList.map(i => (patternKeys(i - 1), m.group(i))))
+      else MatcherResult(isMatch = false, List())
     }
-    case _ => new MatcherResult(isMatch = false, List())
+    case _ => MatcherResult(isMatch = false, List())
   }
 
   def getPatternKeys(pattern: String): List[String] = {
