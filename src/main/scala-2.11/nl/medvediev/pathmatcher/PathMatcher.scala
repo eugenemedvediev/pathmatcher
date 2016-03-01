@@ -1,3 +1,5 @@
+package nl.medvediev.pathmatcher
+
 import java.util.regex.Pattern
 
 /**
@@ -12,18 +14,18 @@ class PathMatcher {
       val (path, pattern) = (unslash(p), unslash(t))
       val patternKeys = getPatternKeys(pattern)
       val m = Pattern.compile(getRegexpPattern(pattern)).matcher(path)
-      if (m.matches()) MatcherResult(isMatch = true, (1 to m.groupCount()).toList.map(i => (patternKeys(i - 1), m.group(i))))
-      else MatcherResult(isMatch = false, List())
+      if (m.matches()) MatcherResult(true, (1 to m.groupCount()).toList.map(i => (patternKeys(i - 1), m.group(i))))
+      else MatcherResult(false)
     }
-    case _ => MatcherResult(isMatch = false, List())
+    case _ => MatcherResult(false)
   }
 
   def getPatternKeys(pattern: String): List[String] = {
-    def splitQuestion(list: List[String]): List[String] = list match {
+    def splitQuestions(list: List[String]): List[String] = list match {
       case Nil => Nil
-      case x :: xs => (if (x.toList.forall(_ == '?')) List.fill(x.length)("?") else List(x)) ::: splitQuestion(xs)
+      case x :: xs => (if (x.toList.forall(_ == '?')) List.fill(x.length)("?") else List(x)) ::: splitQuestions(xs)
     }
-    splitQuestion(pattern.split("[^\\*^\\?]").toList.filter(_.nonEmpty))
+    splitQuestions(pattern.split("[^\\*^\\?]").toList.filter(_.nonEmpty))
   }
 
   def isValidPath(path: String): Boolean = {
@@ -52,4 +54,3 @@ object PathMatcher {
     new PathMatcher()
   }
 }
-

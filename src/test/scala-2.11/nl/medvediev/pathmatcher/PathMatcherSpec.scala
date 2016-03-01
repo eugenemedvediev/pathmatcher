@@ -1,10 +1,12 @@
+package nl.medvediev.pathmatcher
+
 import org.scalatest.PropSpec
 import org.scalatest.prop.TableDrivenPropertyChecks._
 
 /**
   * Created by ievgen on 22/02/16.
   */
-class PathMatcherSuite extends PropSpec{
+class PathMatcherSpec extends PropSpec{
 
   val pathMatcher = PathMatcher()
 
