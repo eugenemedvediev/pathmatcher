@@ -15,7 +15,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>https://github.com/eugenemedvediev/pathparser</url>
+  <url>https://github.com/eugenemedvediev/pathmatcher</url>
     <licenses>
       <license>
         <name>GPLv3</name>
@@ -24,8 +24,8 @@ pomExtra := (
       </license>
     </licenses>
     <scm>
-      <url>git@github.com:eugenemedvediev/pathparser.git</url>
-      <connection>scm:git:git@github.com:eugenemedvediev/pathparser.git</connection>
+      <url>git@github.com:eugenemedvediev/pathmatcher.git</url>
+      <connection>scm:git:git@github.com:eugenemedvediev/pathmatcher.git</connection>
     </scm>
     <developers>
       <developer>
